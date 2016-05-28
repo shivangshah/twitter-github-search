@@ -3,7 +3,7 @@ A project to search tweets based on different github projects returned for a spe
 
 # Project health
 [![Build Status](https://travis-ci.org/shivangshah/twitter-github-search.svg?branch=master)](https://travis-ci.org/shivangshah/twitter-github-search)
-[![codecov](https://codecov.io/gh/shivangshah/twitter-github-search/branch/master/graph/badge.svg)](https://codecov.io/gh/shivangshah/twitter-github-search)
+[![coverage](https://img.shields.io/codecov/c/github/shivangshah/twitter-github-search/master.svg)](https://codecov.io/gh/shivangshah/twitter-github-search)
 # Getting started
 Provide your twitter secrets in the `application.properties` file under `src/resources`
 
@@ -36,10 +36,10 @@ The `pageSize` and the `page` parameters are for searching the project in github
 - [x] Integrate with Github
 - [x] Integrate with Twitter (using Spring Twitter library)
 - [x] Basic Implementation and workflow working
-- [ ] Add unit test cases
-- [ ] Add integration test cases
+- [x] Add unit test cases (Spock)
+- [x] Add integration test cases (Spock + MockMvc)
 - [x] Update Logging
-- [x] Exception Handling (handled by spring boot magic !)
+- [x] Exception Handling (handled by spring boot magic & Controller advice !)
 - [x] Update Documentation
 
 # Sample Response
