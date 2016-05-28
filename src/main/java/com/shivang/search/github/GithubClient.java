@@ -2,10 +2,10 @@ package com.shivang.search.github;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shivang.search.github.model.CustomException;
 import com.shivang.search.github.model.GithubRepository;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -13,10 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.AsyncRestTemplate;
 import rx.Observable;
-import rx.functions.Func1;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- *
  * @author Shivang Shah
  */
 @Component
@@ -24,23 +25,28 @@ public class GithubClient {
 
     private final AsyncRestTemplate asyncRestTemplate;
     private static final String GITHUB_SEARCH_API_BASE_URL = "https://api.github.com/search";
-    private static final String GITHUB_REPOSITORY_SEARCH_URL
+    public static final String GITHUB_REPOSITORY_SEARCH_URL
             = GITHUB_SEARCH_API_BASE_URL + "/repositories?q={searchTerm}&page={page}&per_page={pageSize}";
+    private static final Logger LOGGER = LoggerFactory.getLogger(GithubClient.class);
 
     @Autowired
     public GithubClient(AsyncRestTemplate asyncRestTemplate) {
         this.asyncRestTemplate = asyncRestTemplate;
+        LOGGER.debug("Github client initialized ..");
     }
 
     public Observable<GithubRepository> searchGithubRepositories(String searchTerm,
-            int page, int pageSize) {
+                                                                 int page, int pageSize) {
         return Observable.from(asyncRestTemplate
                 .exchange(GITHUB_REPOSITORY_SEARCH_URL, HttpMethod.GET,
                         HttpEntity.EMPTY, String.class, searchTerm,
                         page, pageSize))
                 .flatMap((ResponseEntity<String> response) -> {
-                    List<GithubRepository> repos = new ArrayList<>();
                     try {
+                        if (!response.getStatusCode().is2xxSuccessful()) {
+                            throw new CustomException(response.getStatusCode(), "Github request was not successful");
+                        }
+                        List<GithubRepository> repos = new ArrayList<>();
                         String jsonResponse = response.getBody();
                         ObjectMapper mapper = new ObjectMapper();
                         JsonNode listOfRepos = mapper.readTree(jsonResponse).get("items");
@@ -49,10 +55,10 @@ public class GithubClient {
                                     repo.get("description").asText()));
                         }
                         return Observable.from(repos);
-                    } catch (IOException ex) {
+                    } catch (Exception ex) {
                         return Observable.error(ex);
                     }
-        });
+                });
 
     }
 }

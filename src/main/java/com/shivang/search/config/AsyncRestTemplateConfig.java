@@ -1,4 +1,4 @@
-package com.shivang.search.twitter.config;
+package com.shivang.search.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

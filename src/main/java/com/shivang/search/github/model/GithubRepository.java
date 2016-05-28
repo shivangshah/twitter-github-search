@@ -1,7 +1,6 @@
 package com.shivang.search.github.model;
 
 /**
- *
  * @author Shivang Shah
  */
 public class GithubRepository {
@@ -14,7 +13,7 @@ public class GithubRepository {
         this.description = description;
     }
 
-    public String getFullName() {
+    public String getName() {
         return name;
     }
 

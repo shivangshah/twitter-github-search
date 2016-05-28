@@ -1,4 +1,4 @@
-package com.shivang.search.twitter.config;
+package com.shivang.search.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -8,11 +8,10 @@ import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * @author Shivang Shah
  */
 @Configuration
-public class TwitterClientConfig {
+public class TwitterConfig {
 
     @Bean
     public Twitter twitter(TwitterClientInfo twitterClientInfo) {
@@ -35,7 +34,7 @@ public class TwitterClientConfig {
         }
 
         public TwitterClientInfo(String consumerKey, String consumerSecret,
-                String accessToken, String accessSecret) {
+                                 String accessToken, String accessSecret) {
             this.consumerKey = consumerKey;
             this.consumerSecret = consumerSecret;
             this.accessSecret = accessSecret;
@@ -50,28 +49,28 @@ public class TwitterClientConfig {
             this.consumerKey = consumerKey;
         }
 
-        public String getConsumerSecret() {
-            return consumerSecret;
-        }
-
         public void setConsumerSecret(String consumerSecret) {
             this.consumerSecret = consumerSecret;
-        }
-
-        public String getAccessToken() {
-            return accessToken;
         }
 
         public void setAccessToken(String accessToken) {
             this.accessToken = accessToken;
         }
 
-        public String getAccessSecret() {
-            return accessSecret;
-        }
-
         public void setAccessSecret(String accessSecret) {
             this.accessSecret = accessSecret;
+        }
+
+        public String getConsumerSecret() {
+            return consumerSecret;
+        }
+
+        public String getAccessToken() {
+            return accessToken;
+        }
+
+        public String getAccessSecret() {
+            return accessSecret;
         }
 
     }
