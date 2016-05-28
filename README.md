@@ -4,6 +4,7 @@ A project to search tweets based on different github projects returned for a spe
 # Project health
 [![Build Status](https://travis-ci.org/shivangshah/twitter-github-search.svg?branch=master)](https://travis-ci.org/shivangshah/twitter-github-search)
 [![coverage](https://img.shields.io/codecov/c/github/shivangshah/twitter-github-search/master.svg)](https://codecov.io/gh/shivangshah/twitter-github-search)
+
 # Getting started
 Provide your twitter secrets in the `application.properties` file under `src/resources`
 
@@ -11,6 +12,10 @@ Provide your twitter secrets in the `application.properties` file under `src/res
 Gradle wrapper is already included so all needs to be done is: 
 
 `./gradlew clean build`
+
+# Test Reports
+Spock test reports can be found here: `build/spock-reports/index.html`
+Jacoco coverage report can be found here: `build/reports/jacoco/test/html/index.html`
 
 # Running the application
 Once built, being a spring boot application, you can easily run the application as: 
@@ -30,9 +35,9 @@ The `pageSize` and the `page` parameters are for searching the project in github
 - Spring Web - All MVC related
 - Gradle - For building purposes
 - Spring Social Twitter - For Twitter api capabilities
+- Spock Test Framework - For BDD test approach
 
 # List of TODOS: 
-
 - [x] Integrate with Github
 - [x] Integrate with Twitter (using Spring Twitter library)
 - [x] Basic Implementation and workflow working
@@ -43,7 +48,6 @@ The `pageSize` and the `page` parameters are for searching the project in github
 - [x] Update Documentation
 
 # Sample Response
-
 A sample response for the above query looks as below: 
 
 ```
