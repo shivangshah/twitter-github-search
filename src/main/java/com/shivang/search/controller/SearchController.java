@@ -3,6 +3,10 @@ package com.shivang.search.controller;
 import com.shivang.search.github.model.CustomException;
 import com.shivang.search.model.GithubTwitter;
 import com.shivang.search.service.SearchService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags = {"Github Twitter Search Service"})
 public class SearchController {
 
     private final SearchService searchService;
@@ -34,6 +39,9 @@ public class SearchController {
         this.searchService = searchService;
     }
 
+    @ApiOperation(value = "/search", notes = "GET Github Repositories and corresponding twitter tweets")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "GithubTwitter", response = GithubTwitter.class))
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public DeferredResult<ResponseEntity<List<GithubTwitter>>> searchGithubAndTwitter(
             @RequestParam("pageSize") Integer pageSize,

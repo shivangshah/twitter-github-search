@@ -29,6 +29,13 @@ Once the server is up, you can navigate to the following REST api using any of y
 
 The `pageSize` and the `page` parameters are for searching the project in github. The current number of tweets per github project is limited to `5` (will eventually make this configurable)
 
+# Swagger Support
+Because using a browser to test your apis is so boring, I have also added support for `Swagger 2.0` using `springfox`. All you have to do once the service is up is:
+- Navigate to `http://localhost:8080/swagger-ui.html`
+- Expand the `Github Twitter Search Service`
+- The `/search` api should show up. Expand to get detailed documentation on the API itself and try it out from the UI itself !
+- Additionally, if you are interested in pulling up API contracts (eventually can be used for `Contract Testing`), you can navigate here: `http://localhost:8080/api-docs`
+
 # Libraries used
 - Spring Actuator - Get built-in capabilities for debug endpoints (such as `/health`, `/info` etc)
 - RxJava & Hystrix - For non-blocking, resilient, application flow
@@ -36,6 +43,7 @@ The `pageSize` and the `page` parameters are for searching the project in github
 - Gradle - For building purposes
 - Spring Social Twitter - For Twitter api capabilities
 - Spock Test Framework - For BDD test approach
+- Springfox-Swagger - Swagger 2.0 support
 
 # List of TODOS: 
 - [x] Integrate with Github
@@ -46,6 +54,7 @@ The `pageSize` and the `page` parameters are for searching the project in github
 - [x] Update Logging
 - [x] Exception Handling (handled by spring boot magic & Controller advice !)
 - [x] Update Documentation
+- [x] Swagger Support
 
 # Sample Response
 A sample response for the above query looks as below: 
