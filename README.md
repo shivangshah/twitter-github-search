@@ -33,7 +33,7 @@ The `pageSize` and the `page` parameters are for searching the project in github
 Because using a browser to test your apis is so boring, I have also added support for `Swagger 2.0` using `springfox`. All you have to do once the service is up is:
 - Navigate to `http://localhost:8080/swagger-ui.html`
 - Expand the `Github Twitter Search Service`
-- The `/search` api should show up. Expand to get detailed documentation on the API itself and try it out from the UI itself !
+- The `/search` api should show up. Expand to get detailed documentation on the API and try it out from the UI itself !
 - Additionally, if you are interested in pulling up API contracts (eventually can be used for `Contract Testing`), you can navigate here: `http://localhost:8080/api-docs`
 
 # Libraries used
